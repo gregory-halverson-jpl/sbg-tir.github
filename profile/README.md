@@ -2,6 +2,62 @@
 
 This organization contains the data product algorithms for the Surface Biology and Geology Thermal Infrared (SBG-TIR) Orbiting Terrestrial Thermal Emission Radiometer (OTTER) sensor.
 
+## Flow-Chart
+
+```mermaid
+flowchart TD
+L1B_GEO_PGE[L1B GEO PGE]
+L1B_RAD_PGE[L1B RAD PGE]
+L1C_RAD_PGE[L1C RAD PGE]
+L2_LSTE_PGE[L2 LSTE PGE]
+L2_STARS_PGE[L2 STARS PGE]
+L4T_JET_PGE[L4T JET PGE]
+
+L1B_GEO_SWATH["L1B Geolocation Product<br>(Including Cloud)"]
+
+L1_RAD_SWATH[L1B RAD Swath Product]
+
+L1CG_RAD_GRID["L1CG RAD Gridded Product<br>(Including Cloud)"]
+L1CT_RAD_TILE["L1CT RAD Tiled Product<br>(Including Cloud)"]
+
+L2G_LSTE_GRID[L2G LSTE Gridded Product]
+L2T_LSTE_TILE[L2T LSTE Tiled Product]
+
+L2T_STARS_TILE[L2T STARS Tiled Product]
+
+L4T_JET_TILE[L4T JET Tiled Product]
+L4T_ESI_TILE[L4T ESI Tiled Product]
+L4T_WUE_TILE[L4T WUE Tiled Product]
+
+L1B_GEO_PGE --> L1B_GEO_SWATH
+
+L1B_RAD_PGE --> L1_RAD_SWATH
+
+L1_RAD_SWATH --> L1C_RAD_PGE
+L1_RAD_SWATH --> L1B_GEO_PGE
+L1B_GEO_SWATH --> L1C_RAD_PGE
+
+L1C_RAD_PGE --> L1CG_RAD_GRID
+L1C_RAD_PGE --> L1CT_RAD_TILE
+
+
+L1CG_RAD_GRID --> L2_LSTE_PGE
+
+L2_LSTE_PGE --> L2G_LSTE_GRID
+L2_LSTE_PGE --> L2T_LSTE_TILE
+
+L2T_LSTE_TILE --> L2_STARS_PGE
+
+L2_STARS_PGE --> L2T_STARS_TILE
+
+L2T_LSTE_TILE --> L4T_JET_PGE
+L2T_STARS_TILE --> L4T_JET_PGE
+
+L4T_JET_PGE --> L4T_JET_TILE
+L4T_JET_PGE --> L4T_ESI_TILE
+L4T_JET_PGE --> L4T_WUE_TILE
+```
+
 ## SBG-TIR Data Product Algorithms
 
 The SBG-TIR data product algorithms include:
